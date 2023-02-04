@@ -1,0 +1,31 @@
+{
+  "name": "week5_personal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongo": "^0.1.0",
+    "mongodb": "^5.0.0",
+    "mongodb-connection-string-url": "^2.6.0",
+    "mongoose": "^6.9.0",
+    "nodemon": "^2.0.20",
+    "swagger-autogen": "^2.23.0",
+    "swagger-ui-express": "^4.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "swagger": "node ./swagger.js"
+  },
+  "author": "Marta Alves",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^4.13.0",
+    "nodemon": "^2.0.20",
+    "swagger-autogen": "^2.22.0"
+  }
+}

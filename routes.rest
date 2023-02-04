@@ -1,0 +1,76 @@
+// LOCALHOST
+###
+GET http://localhost:8080/movies
+###
+GET http://localhost:8080/contacts/63c331843ba3f6f83159dffd
+###
+GET http://localhost:8080/contacts/63c331a73ba3f6f8315a1eef
+###
+GET http://localhost:8080/contacts/63c331c73ba3f6f8315a53ae
+
+###
+#Create Contact
+POST http://localhost:8080/contacts HTTP/1.1
+content-type: application/json
+{
+    "firstName": "Sonia",
+    "lastName": "Pom",
+    "email": "sp@gmail.com",
+    "favoriteColor": "Red",
+    "birthday": "03/30/76"  
+}
+
+###
+#Update Contact
+PUT http://localhost:8080/contacts/63c331c73ba3f6f8315a53ae HTTP/1.1
+Content-Type: application/json
+{
+     "firstName": "Uriel",
+    "lastName": "Alves",
+    "email": "uria@gmail.com",
+    "favoriteColor": "Purple",
+    "birthday": "01/23/21"
+}
+
+###
+#Delete Contact
+DELETE http://localhost:8080/contacts/6220b775099269ff7b31ceab HTTP/1.1
+
+// PRODUCTION Deploy
+###
+GET https://cs341-week-2-personal.onrender.com/contacts
+###
+GET https://cs341-week-2-personal.onrender.com/contacts/63c331843ba3f6f83159dffd
+###
+GET https://cs341-week-2-personal.onrender.com/contacts/63c331a73ba3f6f8315a1eef
+###
+GET https://cs341-week-2-personal.onrender.com/contacts/63c331c73ba3f6f8315a53ae
+
+###
+#Create Contact
+POST https://cs341-week-2-personal.onrender.com/contacts HTTP/1.1
+Content-Type: application/json
+{
+    "firstName":"Sonia", 
+    "lastName":"Pom", 
+    "email":"sp@gmail.com",
+    "favoriteColor":"Blue", 
+    "birthday":"03/30/1976"
+}
+###
+#Update Contact
+PUT  https://cs341-week-2-personal.onrender.com/contacts/63c331c73ba3f6f8315a53ae HTTP/1.1
+Content-Type: application/json
+{
+     "firstName": "Uriel",
+    "lastName": "Alves",
+    "email": "uria@gmail.com",
+    "favoriteColor": "Purple",
+    "birthday": "01/23/21"
+}
+
+###
+#Delete Contact
+DELETE  https://cs341-week-2-personal.onrender.com/6220b775099269ff7b31ceab HTTP/1.1
+
+

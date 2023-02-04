@@ -1,0 +1,23 @@
+{
+  "movie": {
+    "movieTitle": "Inception",
+    "description": "A thief who steals corporate secrets through the use of dream-sharing technology.",
+    "director": "Christopher Nolan",
+    "year": "2010",
+    "rating": "8.8"
+  },
+  "movie2": {
+    "movieTitle": "Black Panther: Wakanda Forever",
+    "description": "The people of Wakanda fight to protect their home from intervening world powers as they mourn the death of King T'Challa.",
+    "director": "Ryan Coogler",
+    "year": "2022",
+    "rating": "7.0"
+  },
+  "movie3": {
+    "movieTitle": "Lord of the Rings: The Return of the King",
+    "description": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
+    "director": "Peter Jackson",
+    "year": "2003",
+    "rating": "9.0"
+  }
+}
