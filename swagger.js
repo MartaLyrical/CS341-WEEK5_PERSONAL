@@ -4,8 +4,8 @@ const doc = {
     title: "Favorite Movies",
     description: "Marta Movies",
   },
-  host: "localhost:8080",
-  schemes: ["http"],
+  host: "cs341-week5.onrender.com",
+  schemes: ["https"],
 };
 
 const outputFile = "./swagger.json";
