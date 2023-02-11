@@ -86,7 +86,8 @@ const deleteMovie = async (req, res) => {
     .getDb()
     .db("movies")
     .collection("movies")
-    .remove({ _id: movieId }, true);
+    .deleteOne({ _id: movieId }, true);
+  //.removeOne({ _id: movieId }, true);
   console.log(response);
   if (response.deletedCount > 0) {
     res.status(204).send();
