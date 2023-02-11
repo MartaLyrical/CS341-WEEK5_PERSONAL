@@ -3,20 +3,29 @@ const ObjectId = require("mongodb").ObjectId;
 
 const getAll = async (req, res) => {
   const result = await mongodb.getDb().db("movies").collection("movies").find();
-  result.toArray().then((lists) => {
+  result.toArray((err, lists) => {
+    if (err) {
+      res.status(400).json({ message: err });
+    }
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(lists);
   });
 };
 
 const getSingle = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json("Please use a valid Movie id to find a Movie.");
+  }
   const movieId = new ObjectId(req.params.id);
   const result = await mongodb
     .getDb()
     .db("movies")
     .collection("movies")
     .find({ _id: movieId });
-  result.toArray().then((lists) => {
+  result.toArray((err, lists) => {
+    if (err) {
+      res.status(400).json({ message: err });
+    }
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(lists[0]);
   });
@@ -44,6 +53,9 @@ const createMovie = async (req, res) => {
 };
 
 const updateMovie = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json("Must use a valid Movie id to update a Movie.");
+  }
   const movieId = new ObjectId(req.params.id);
   const movie = {
     movieTitle: req.body.movieTitle,
@@ -66,6 +78,9 @@ const updateMovie = async (req, res) => {
 };
 
 const deleteMovie = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json("Must use a valid Movie id to delete a Movie.");
+  }
   const movieId = new ObjectId(req.params.id);
   const response = await mongodb
     .getDb()
