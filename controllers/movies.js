@@ -2,33 +2,36 @@ const mongodb = require("../db/connect");
 const ObjectId = require("mongodb").ObjectId;
 
 const getAll = async (req, res) => {
-  const result = await mongodb.getDb().db("movies").collection("movies").find();
-  result.toArray((err, lists) => {
-    if (err) {
-      res.status(400).json({ message: err });
-    }
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).json(lists);
-  });
+  try {
+    const result = await mongodb
+      .getDb()
+      .db("movies")
+      .collection("movies")
+      .find();
+    result.toArray().then((lists) => {
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).json(lists);
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 const getSingle = async (req, res) => {
-  if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json("Please use a valid Movie id to find a Movie.");
+  try {
+    const movieId = new ObjectId(req.params.id);
+    const result = await mongodb
+      .getDb()
+      .db("movies")
+      .collection("movies")
+      .find({ _id: movieId });
+    result.toArray().then((lists) => {
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).json(lists[0]);
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
-  const movieId = new ObjectId(req.params.id);
-  const result = await mongodb
-    .getDb()
-    .db("movies")
-    .collection("movies")
-    .find({ _id: movieId });
-  result.toArray((err, lists) => {
-    if (err) {
-      res.status(400).json({ message: err });
-    }
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).json(lists[0]);
-  });
 };
 
 const createMovie = async (req, res) => {
