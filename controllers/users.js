@@ -19,12 +19,12 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
   try {
-    const movieId = new ObjectId(req.params.id);
+    const userId = new ObjectId(req.params.id);
     const result = await mongodb
       .getDb()
       .db("movies")
       .collection("users")
-      .find({ _id: movieId });
+      .find({ _id: userId });
     result.toArray().then((lists) => {
       res.setHeader("Content-Type", "application/json");
       res.status(200).json(lists[0]);
@@ -88,7 +88,7 @@ const deleteUser = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json("Must use a valid User id to delete a User.");
   }
-  const movieId = new ObjectId(req.params.id);
+  const userId = new ObjectId(req.params.id);
   const response = await mongodb
     .getDb()
     .db("movies")
@@ -107,7 +107,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getAll,
   getSingle,
-  createMovie,
-  updateMovie,
-  deleteMovie,
+  createUser,
+  updateUser,
+  deleteUser,
 };
