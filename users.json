@@ -1,0 +1,29 @@
+{
+  "user1": {
+    "username": "msd21",
+    "password": "myMovies1",
+    "firstName": "Marta",
+    "lastName": "Alves",
+    "age": "36",
+    "email": "msd@gmail.com",
+    "profession": "Movie Critic"
+  },
+  "user2": {
+    "username": "uri2021",
+    "password": "myMovies2",
+    "firstName": "Uriel",
+    "lastName": "Alves",
+    "age": "18",
+    "email": "uriuri@gmail.com",
+    "profession": "Actor"
+  },
+  "user3": {
+    "username": "vibedot30",
+    "password": "myMovies3",
+    "firstName": "Fabio",
+    "lastName": "Alves",
+    "age": "30",
+    "email": "vibedot@gmail.com",
+    "profession": "Director"
+  }
+}
