@@ -8,16 +8,16 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const passport = require("passport");
 const { auth, requiresAuth } = require("express-openid-connect");
+const session = require("express-session");
 require("./auth");
 
-/*const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: process.env.SECRET,
-  baseURL: process.env.BASE_URL,
-  clientID: process.env.CLIENT_ID,
-  issuerBaseURL: process.env.ISSUER_BASE_URL,
-};*/
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.sendStatus(401);
+}
+
+app.use(session({ secret: "movies", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get("/", (req, res) => {
   res.send('<a href="/auth/google"> Authenticate with Google </a>');
@@ -28,9 +28,32 @@ app.get(
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
-app.get("/protected", (req, res) => {
-  res.send("Hello");
+app.get(
+  "auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/protected",
+    failureRedirect: "/auth/failure",
+  })
+);
+
+app.get("/auth/failure", (req, res) => {
+  res.send("Something went wrong. Please try again later...");
 });
+
+app.get("/protected", isLoggedIn, (req, res) => {
+  res.send(`Hello ${req.user.displayName}`);
+});
+
+app.get("/logout", (req, res) => {
+  req.logout();
+  req.session.destroy();
+  res.send("Goodbye!");
+});
+
+app.get("/auth/google/failure", (req, res) => {
+  res.send("Failed to authenticate..");
+});
+
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 //app.use(auth(config));
 

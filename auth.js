@@ -1,5 +1,5 @@
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth2").Strategy;
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 require("./auth");
 const CLIENT_ID = process.env.CLIENT_ID;
 const SECRET = process.env.SECRET;
@@ -9,9 +9,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      //callbackURL: "http://localhost:8080/auth/google/callback",
-      callbackURL:
-        "https://cs341-week5.onrender.com/auth/google/oauth2callback",
+      // callbackURL: "http://localhost:8080/auth/google/callback",
+      callbackURL: "https://cs341-week5.onrender.com/callback",
       passReqToCallback: true,
     },
     function (request, accessToken, refreshToken, profile, done) {
