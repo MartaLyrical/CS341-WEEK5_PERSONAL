@@ -13,8 +13,9 @@ require("./auth");
 require("dotenv").config();
 const Movie = require("./helpers/validate");
 const router = express.Router();
+const mongoose = require("mongoose");
 
-/*const config = {
+const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.SECRET,
@@ -22,6 +23,15 @@ const router = express.Router();
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
 };
+
+mongodb.initDb((err) => {
+  try {
+    app.listen(port);
+    console.log(`Connected to DB and listening on ${port}`);
+  } catch (error) {
+    console.log("Cannot connect to the database!", error);
+  }
+});
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
@@ -47,8 +57,8 @@ app.get("/movies", requiresAuth(), (req, res) => {
 });
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-*/
-function isLoggedIn(req, res, next) {
+
+/*function isLoggedIn(req, res, next) {
   req.user ? next() : res.sendStatus(401);
 }
 
@@ -133,12 +143,4 @@ process.on("uncaughtException", (err, origin) => {
     `Caught exception: ${err}\n` + `Exception origin: ${origin}`
   );
 });
-
-mongodb.initDb((err) => {
-  try {
-    app.listen(port);
-    console.log(`Connected to DB and listening on ${port}`);
-  } catch (error) {
-    console.log("Cannot connect to the database!", error);
-  }
-});
+*/
