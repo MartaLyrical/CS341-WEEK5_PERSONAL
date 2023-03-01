@@ -33,6 +33,19 @@ mongodb.initDb((err) => {
   }
 });
 
+// establish a connection to the mongo database
+mongoose.connect(
+  process.env.MONGODB_URI,
+  { useNewUrlParser: true },
+  (err, res) => {
+    if (err) {
+      console.log("Connection failed: " + err);
+    } else {
+      console.log("Connected to database!");
+    }
+  }
+);
+
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
 
