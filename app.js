@@ -15,14 +15,14 @@ const Movie = require("./helpers/validate");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-const config = {
+/*const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.SECRET,
   baseURL: process.env.BASE_URL,
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
-};
+};*/
 
 mongodb.initDb((err) => {
   try {
@@ -34,7 +34,7 @@ mongodb.initDb((err) => {
 });
 
 // establish a connection to the mongo database
-mongoose.connect(
+/*mongoose.connect(
   process.env.MONGODB_URI,
   { useNewUrlParser: true },
   (err, res) => {
@@ -67,11 +67,11 @@ app.get("/movies", requiresAuth(), (req, res) => {
     .catch((err) => {
       res.status(500).json({ message: "An error occured", error: err });
     });
-});
+});*/
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-/*function isLoggedIn(req, res, next) {
+function isLoggedIn(req, res, next) {
   req.user ? next() : res.sendStatus(401);
 }
 
@@ -136,7 +136,7 @@ app.get("/auth/google/failure", (req, res) => {
 // res.send(JSON.stringify(req.oidc.user));
 //});
 
-app
+/*app
   .use(
     "/api-docs",
     requiresAuth(),
@@ -155,5 +155,4 @@ process.on("uncaughtException", (err, origin) => {
     process.stderr.fd,
     `Caught exception: ${err}\n` + `Exception origin: ${origin}`
   );
-});
-*/
+});*/
