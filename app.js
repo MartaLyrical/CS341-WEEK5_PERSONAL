@@ -101,17 +101,9 @@ app.get("/auth/failure", (req, res) => {
 });
 
 app.get("/protected", isLoggedIn, (req, res) => {
-  swaggerUi.serve, swaggerUi.setup(swaggerDocument);
-  express.json();
-  bodyParser.json();
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  require("./routes");
-  process.on("uncaughtException", (err, origin) => {
-    console.log(
-      process.stderr.fd,
-      `Caught exception: ${err}\n` + `Exception origin: ${origin}`
-    );
-  });
+  res.send(
+    'Welcome to Marta Movies  <a href="/api-docs"> Check the movies </a>'
+  );
 });
 
 app.get("/logout", (req, res) => {
@@ -136,7 +128,7 @@ app.get("/auth/google/failure", (req, res) => {
 // res.send(JSON.stringify(req.oidc.user));
 //});
 
-/*app
+app
   .use(
     "/api-docs",
     requiresAuth(),
@@ -155,4 +147,4 @@ process.on("uncaughtException", (err, origin) => {
     process.stderr.fd,
     `Caught exception: ${err}\n` + `Exception origin: ${origin}`
   );
-});*/
+});
